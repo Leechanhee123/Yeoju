@@ -1,0 +1,6 @@
+.playwright-mcp/
+.playwright-runtime/
+.server-*.log
+apps-script-testpost.png
+iaan-*.png
+assets/footer.png
