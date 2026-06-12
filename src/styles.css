@@ -248,13 +248,14 @@ input {
 
 .hero {
   position: relative;
-  min-height: min(840px, 100svh);
+  min-height: min(840px, calc(100svh - var(--header-h)));
+  margin-top: var(--header-h);
   overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.72fr);
   align-items: stretch;
   gap: 0;
-  padding: var(--header-h) clamp(14px, 2.4vw, 40px) 24px;
+  padding: 0 clamp(14px, 2.4vw, 40px) 24px;
   color: #fff7ef;
   background:
     linear-gradient(90deg, #071311 0%, #102723 64%, #f2eadf 64%, #f2eadf 100%),
@@ -1231,7 +1232,7 @@ h2 {
   padding-top: calc(var(--header-h) + clamp(42px, 7vw, 88px));
   background:
     linear-gradient(120deg, rgba(7, 61, 58, 0.94), rgba(18, 93, 85, 0.82)),
-    url("assets/hero-aerial.jpg") center / cover;
+    url("../assets/hero-aerial.jpg") center / cover;
   color: #fff7ef;
 }
 
@@ -1777,7 +1778,7 @@ body.privacy-open {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding: calc(var(--header-h) + 28px) 18px 42px;
+    padding: 28px 18px 42px;
     background: linear-gradient(180deg, #102723, #f2eadf 56%);
   }
 
@@ -1936,7 +1937,7 @@ body.privacy-open {
 
   .hero {
     gap: 28px;
-    padding: calc(var(--header-h) + 18px) 14px 34px;
+    padding: 18px 14px 34px;
   }
 
   .hero-actions .button {

@@ -1,6 +1,8 @@
 .playwright-mcp/
 .playwright-runtime/
+.omc/
 .server-*.log
 apps-script-testpost.png
 iaan-*.png
+assets/reference/
 assets/footer.png
