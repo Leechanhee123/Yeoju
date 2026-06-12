@@ -149,6 +149,41 @@ const postLeadSubmission = (submission) => {
   });
 };
 
+const privacyModal = document.getElementById("privacyModal");
+
+if (privacyModal) {
+  let lastFocusedElement = null;
+
+  const openPrivacyModal = (trigger) => {
+    lastFocusedElement = trigger || document.activeElement;
+    privacyModal.hidden = false;
+    document.body.classList.add("privacy-open");
+    privacyModal.querySelector(".privacy-modal-close")?.focus();
+  };
+
+  const closePrivacyModal = () => {
+    privacyModal.hidden = true;
+    document.body.classList.remove("privacy-open");
+    if (lastFocusedElement instanceof HTMLElement) {
+      lastFocusedElement.focus();
+    }
+  };
+
+  document.querySelectorAll("[data-privacy-open]").forEach((trigger) => {
+    trigger.addEventListener("click", () => openPrivacyModal(trigger));
+  });
+
+  privacyModal.querySelectorAll("[data-privacy-close]").forEach((closer) => {
+    closer.addEventListener("click", closePrivacyModal);
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !privacyModal.hidden) {
+      closePrivacyModal();
+    }
+  });
+}
+
 leadForms.forEach((form) => {
   const phoneInput = form.querySelector('[name="phone"]');
 
