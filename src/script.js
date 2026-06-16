@@ -133,9 +133,7 @@ const postLeadSubmission = (submission) => {
       phone: submission.phone,
       area: submission.area,
       privacy: String(submission.privacyAgreed),
-      page: submission.page,
       submittedAt: submission.submittedAt,
-      userAgent: submission.userAgent,
     }).forEach(([name, value]) => {
       transportForm.append(createHiddenInput(name, value));
     });
@@ -231,9 +229,7 @@ leadForms.forEach((form) => {
       phone,
       area,
       privacyAgreed,
-      page: window.location.pathname.split("/").pop() || "index.html",
       submittedAt: new Date().toISOString(),
-      userAgent: navigator.userAgent,
     };
 
     saveLocalSubmission(submission);
