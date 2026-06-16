@@ -271,13 +271,7 @@ leadForms.forEach((form) => {
 });
 
 const revealTargets = new Set(document.querySelectorAll(".reveal"));
-document.querySelectorAll("main img").forEach((image) => {
-  // 갤러리·탭으로 여러 장이 모인 이미지는 효과에서 제외
-  if (image.closest(".unit-photo-card, .plan-card")) {
-    return;
-  }
-  revealTargets.add(image);
-});
+document.querySelectorAll("main img").forEach((image) => revealTargets.add(image));
 revealTargets.forEach((target) => target.classList.add("reveal"));
 
 // 이미지는 디코드가 끝난 뒤에 페이드를 시작해야 효과가 실제로 보인다.
