@@ -701,6 +701,39 @@ h2 {
   margin-top: 30px;
 }
 
+.home-riverview {
+  grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.08fr);
+}
+
+.home-riverview .home-showcase-media {
+  order: 2;
+}
+
+.home-riverview .home-showcase-copy {
+  order: 1;
+}
+
+.home-riverview .home-showcase-media img {
+  transform-origin: center 40%;
+  animation: riverview-pan 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes riverview-pan {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-riverview .home-showcase-media img {
+    animation: none;
+  }
+}
+
 .button.outline {
   border-color: rgba(7, 61, 58, 0.28);
   background: transparent;
@@ -1828,9 +1861,19 @@ body.privacy-open {
   transform: none;
 }
 
-.reveal.is-visible {
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-animated {
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1838,7 +1881,12 @@ body.privacy-open {
     scroll-behavior: auto;
   }
 
-  .reveal,
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .button,
   .nav-links a::after {
     transition: none;

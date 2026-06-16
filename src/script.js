@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js");
+
 const header = document.querySelector("[data-elevate]");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector(".nav-links");
@@ -267,3 +269,49 @@ leadForms.forEach((form) => {
     }
   });
 });
+
+const revealTargets = new Set(document.querySelectorAll(".reveal"));
+document.querySelectorAll("main img").forEach((image) => {
+  // 갤러리·탭으로 여러 장이 모인 이미지는 효과에서 제외
+  if (image.closest(".unit-photo-card, .plan-card")) {
+    return;
+  }
+  revealTargets.add(image);
+});
+revealTargets.forEach((target) => target.classList.add("reveal"));
+
+// 이미지는 디코드가 끝난 뒤에 페이드를 시작해야 효과가 실제로 보인다.
+// is-visible 직전에 강제 reflow로 opacity:0 상태를 확정해야
+// (특히 캐시되어 즉시 complete인 이미지) 트랜지션이 점프하지 않고 재생된다.
+const showTarget = (target) => {
+  const reveal = () => {
+    void target.offsetWidth; // opacity:0 상태를 확정
+    target.classList.add("is-animated"); // transition 켜기
+    void target.offsetWidth; // transition을 확정한 뒤
+    target.classList.add("is-visible"); // 0 -> 1 페이드 시작
+  };
+  if (target.tagName === "IMG" && !target.complete) {
+    target.addEventListener("load", reveal, { once: true });
+    target.addEventListener("error", reveal, { once: true });
+  } else {
+    reveal();
+  }
+};
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          showTarget(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+  );
+
+  revealTargets.forEach((target) => revealObserver.observe(target));
+} else {
+  revealTargets.forEach((target) => showTarget(target));
+}
