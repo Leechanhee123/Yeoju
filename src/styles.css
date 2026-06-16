@@ -1255,6 +1255,27 @@ h2 {
   box-shadow: var(--shadow);
 }
 
+.location-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: min(100%, 1040px);
+  margin: 16px auto 0;
+}
+
+.location-cards img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 720px) {
+  .location-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 .contact {
   align-items: center;
 }
