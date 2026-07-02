@@ -2888,6 +2888,15 @@ body.privacy-open {
   word-break: keep-all;
 }
 
+.press-summary {
+  margin: 0;
+  color: color-mix(in srgb, var(--ink) 66%, white);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
 .press-meta {
   display: flex;
   align-items: center;
