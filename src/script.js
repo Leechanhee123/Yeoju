@@ -304,7 +304,10 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+    // threshold는 요소 면적 대비 비율이라 뷰포트보다 큰 세로 이미지는
+    // 첫 화면에서 비율을 못 채워 스크롤 전까지 트리거되지 않는다.
+    // 0.01로 낮춰 요소가 뷰포트에 진입하면 바로 등장하게 한다.
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
   );
 
   revealTargets.forEach((target) => revealObserver.observe(target));
