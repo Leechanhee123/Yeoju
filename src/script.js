@@ -71,7 +71,6 @@ tabs.forEach((tab) => {
     tabs.forEach((item) => item.classList.toggle("active", item === tab));
   });
 });
-
 const saveLocalSubmission = (submission) => {
   window.__leadSubmissions = window.__leadSubmissions || [];
   window.__leadSubmissions.push(submission);
