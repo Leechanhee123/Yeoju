@@ -4,19 +4,31 @@
   --river: #1c8178;
   --leaf: #8da672;
   --copper: #c97843;
-  --paper: #f8f4ec;
-  --mist: #eef5f1;
+  --paper: #f4f7ee;
+  --mist: #eaf4e1;
   --line: rgba(22, 36, 33, 0.14);
   --shadow: 0 24px 70px rgba(13, 35, 32, 0.18);
   --header-h: 76px;
-  /* 브로슈어(PREMIUM 6 / BENEFIT 7) 재현 전용 색 */
-  --bnav: #103a52;
-  --blime: #8ed13f;
-  --blime-ink: #5f9f27;
+  /* 이안 리버파크 브랜드 색 (로고에서 추출) */
+  --brand: #88c038;      /* 로고 그린 — 주 강조색 */
+  --brand-ink: #5f8f24;  /* 밝은 배경 위 텍스트/호버용 진한 그린 */
+  --brand-navy: #002838; /* 로고 딥네이비 — 헤드라인/숫자 punch */
+  --pastel: #e8f4d6;      /* 파스텔 민트 면(surface) */
+  --pastel-tag: #dcefb8;  /* 파스텔 태그 배경 */
+  --pastel-ink: #46731a;  /* 파스텔 태그 위 진한 그린 텍스트 */
+  /* 브로슈어(PREMIUM 6 / BENEFIT 7) 재현 전용 색 — 로고 정확값으로 보정 */
+  --bnav: #002838;
+  --blime: #88c038;
+  --blime-ink: #5f8f24;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--brand-navy);
 }
 
 html {
@@ -59,14 +71,14 @@ input {
   gap: 32px;
   min-height: var(--header-h);
   padding: 14px clamp(46px, 7vw, 112px);
-  background: rgba(248, 244, 236, 0.78);
+  background: rgba(244, 247, 238, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.36);
   backdrop-filter: blur(18px);
   transition: box-shadow 180ms ease, background 180ms ease;
 }
 
 .site-header.is-elevated {
-  background: rgba(248, 244, 236, 0.94);
+  background: rgba(244, 247, 238, 0.92);
   box-shadow: 0 16px 48px rgba(8, 32, 29, 0.13);
 }
 
@@ -111,7 +123,7 @@ input {
   right: 0;
   bottom: 0;
   height: 2px;
-  background: var(--copper);
+  background: var(--brand);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 180ms ease;
@@ -143,7 +155,7 @@ input {
   padding: 10px;
   border: 1px solid rgba(22, 36, 33, 0.12);
   border-radius: 8px;
-  background: rgba(248, 244, 236, 0.98);
+  background: rgba(244, 247, 238, 0.98);
   box-shadow: 0 20px 54px rgba(8, 32, 29, 0.18);
   opacity: 0;
   pointer-events: none;
@@ -193,7 +205,7 @@ input {
   padding: 0;
   border: 1px solid rgba(22, 36, 33, 0.18);
   border-radius: 8px;
-  background: rgba(248, 244, 236, 0.9);
+  background: rgba(244, 247, 238, 0.9);
   color: var(--ink);
   cursor: pointer;
 }
@@ -268,8 +280,12 @@ input {
 }
 
 .eyebrow {
+  display: inline-block;
   margin: 0 0 14px;
-  color: var(--copper);
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--pastel-tag);
+  color: var(--pastel-ink);
   font-size: 13px;
   font-weight: 900;
   letter-spacing: 0;
@@ -336,7 +352,13 @@ h2 {
 }
 
 .button.primary {
-  background: var(--copper);
+  background: var(--brand);
+  color: var(--brand-navy);
+  box-shadow: 0 14px 30px rgba(136, 192, 56, 0.4);
+}
+
+.button.primary:hover {
+  background: var(--brand-ink);
   color: #fff7ef;
 }
 
@@ -414,8 +436,8 @@ h2 {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: #fffdf8;
-  color: var(--deep);
+  background: var(--brand);
+  color: var(--brand-navy);
   font-size: 20px;
   content: "✓";
   transform: translateY(-50%);
@@ -435,8 +457,9 @@ h2 {
   align-items: center;
   margin-bottom: 18px;
   padding: 0 18px;
-  background: rgba(201, 120, 67, 0.96);
-  color: #fff7ef;
+  border-radius: 6px;
+  background: var(--brand);
+  color: var(--brand-navy);
   font-size: clamp(20px, 2.4vw, 34px);
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -488,9 +511,7 @@ h2 {
   justify-items: center;
   min-height: clamp(520px, 70vh, 720px);
   padding: clamp(32px, 5vw, 72px) clamp(20px, 3vw, 54px);
-  background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(239, 230, 216, 0.96)),
-    var(--paper);
+  background: linear-gradient(180deg, #ffffff, var(--pastel));
   color: var(--deep);
   text-align: center;
 }
@@ -551,8 +572,12 @@ h2 {
 }
 
 .hero-panel-kicker {
+  display: inline-block;
   margin: 0 0 28px;
-  color: color-mix(in srgb, var(--deep) 68%, white);
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--pastel-tag);
+  color: var(--pastel-ink);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -583,6 +608,7 @@ h2 {
 
 .hero-price-stack strong {
   margin-top: 8px;
+  color: var(--brand-navy);
   font-size: clamp(38px, 4.7vw, 72px);
 }
 
@@ -869,7 +895,7 @@ h2 {
   gap: clamp(24px, 5vw, 68px);
   align-items: center;
   background:
-    linear-gradient(180deg, var(--mist), rgba(248, 244, 236, 0.96)),
+    linear-gradient(180deg, var(--mist), rgba(244, 247, 238, 0.96)),
     var(--mist);
 }
 
@@ -1708,7 +1734,7 @@ h2 {
   position: absolute;
   inset: 0 0 auto;
   height: 5px;
-  background: linear-gradient(90deg, var(--copper), color-mix(in srgb, var(--copper) 60%, var(--deep)));
+  background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 60%, var(--deep)));
   content: "";
 }
 
@@ -1725,8 +1751,12 @@ h2 {
 }
 
 .form-head p {
+  justify-self: start;
   margin: 0;
-  color: var(--copper);
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--pastel-tag);
+  color: var(--pastel-ink);
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.14em;
@@ -1787,20 +1817,20 @@ h2 {
 
 .lead-form input:focus {
   outline: none;
-  border-color: var(--river);
+  border-color: var(--brand-ink);
   background: #fffdf8;
-  box-shadow: 0 0 0 4px rgba(28, 129, 120, 0.16);
+  box-shadow: 0 0 0 4px rgba(136, 192, 56, 0.22);
 }
 
 .lead-form .button.primary {
   margin-top: 4px;
   min-height: 56px;
   font-size: 17px;
-  box-shadow: 0 16px 34px rgba(201, 120, 67, 0.34);
+  box-shadow: 0 16px 34px rgba(136, 192, 56, 0.42);
 }
 
 .lead-form .button.primary:hover {
-  background: color-mix(in srgb, var(--copper) 90%, black);
+  background: color-mix(in srgb, var(--brand-ink) 90%, black);
 }
 
 .lead-form .check {
@@ -1814,7 +1844,7 @@ h2 {
 .check input {
   width: 18px;
   min-height: 18px;
-  accent-color: var(--copper);
+  accent-color: var(--brand);
 }
 
 .form-trust {
@@ -2311,7 +2341,7 @@ body.privacy-open {
     padding: 12px;
     border: 1px solid rgba(22, 36, 33, 0.12);
     border-radius: 8px;
-    background: rgba(248, 244, 236, 0.98);
+    background: rgba(244, 247, 238, 0.98);
     box-shadow: 0 22px 64px rgba(8, 32, 29, 0.2);
     font-size: 15px;
     gap: 0;
@@ -2798,7 +2828,7 @@ body.privacy-open {
 }
 
 .press-more {
-  color: var(--copper);
+  color: var(--brand-ink);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
