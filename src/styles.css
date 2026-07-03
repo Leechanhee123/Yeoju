@@ -15,7 +15,7 @@
   --brand-navy: #002838; /* 로고 딥네이비 — 헤드라인/숫자 punch */
   --pastel: #e8f4d6;      /* 파스텔 민트 면(surface) */
   --pastel-tag: #dcefb8;  /* 파스텔 태그 배경 */
-  --pastel-ink: #46731a;  /* 파스텔 태그 위 진한 그린 텍스트 */
+  --pastel-ink: #3a5e14;  /* 파스텔 태그 위 진한 그린 텍스트 (AA 4.5:1 확보) */
   /* 브로슈어(PREMIUM 6 / BENEFIT 7) 재현 전용 색 — 로고 정확값으로 보정 */
   --bnav: #002838;
   --blime: #88c038;
@@ -29,6 +29,56 @@
 ::selection {
   background: var(--brand);
   color: var(--brand-navy);
+}
+
+/* 화면엔 안 보이지만 스크린리더/검색엔진용 텍스트 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 키보드 포커스 표시 */
+:focus-visible {
+  outline: 2px solid var(--brand-ink);
+  outline-offset: 2px;
+}
+
+/* 스킵링크로 프로그램적 포커스 이동 시 아웃라인 숨김 */
+main:focus {
+  outline: none;
+}
+
+/* 키보드 사용자용 본문 바로가기 (평소 숨김, Tab 시 노출) */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: var(--brand-navy);
+  font-weight: 800;
+  transition: top 160ms ease;
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 html {
@@ -351,6 +401,10 @@ h2 {
   transform: translateY(-2px);
 }
 
+.button:active {
+  transform: translateY(0) scale(0.97);
+}
+
 .button.primary {
   background: var(--brand);
   color: var(--brand-navy);
@@ -610,6 +664,7 @@ h2 {
   margin-top: 8px;
   color: var(--brand-navy);
   font-size: clamp(38px, 4.7vw, 72px);
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-panel-note {
