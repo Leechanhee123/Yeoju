@@ -2570,6 +2570,11 @@ body.privacy-open {
     transform: none;
   }
 
+  .nav-group:hover .submenu,
+  .nav-group:focus-within .submenu {
+    transform: none;
+  }
+
   .submenu a {
     justify-content: flex-start;
     min-height: 44px;
