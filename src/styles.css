@@ -3065,6 +3065,13 @@ details.press-scrap summary img {
   gap: clamp(12px, 1.6vw, 20px);
 }
 
+.gallery-note {
+  margin: clamp(28px, 4vw, 44px) auto 0;
+  color: color-mix(in srgb, var(--ink) 62%, white);
+  text-align: center;
+  font-size: 15px;
+}
+
 .gallery-item {
   margin: 0;
   overflow: hidden;
