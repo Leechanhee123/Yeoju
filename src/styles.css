@@ -2938,6 +2938,11 @@ body.privacy-open {
   }
 }
 
+/* 스크랩 카드는 details 펼침 시 옆 카드가 같이 늘어나지 않게 각자 높이 유지 */
+.press-grid-scrap {
+  align-items: start;
+}
+
 .press-card {
   display: flex;
   flex-direction: column;
